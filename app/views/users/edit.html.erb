@@ -7,14 +7,20 @@
         <%= f.text_field  :name, class: "form-control", id: "exampleInputName1" %>
     </div>
     <div class="form-group">
-        <label for="exampleInputContent1">内容：</label>
-        <%= f.text_area :email, class: "form-control", id: "exampleInputContent1" %>
+        <label for="exampleInputContent1">メールアドレス：</label>
+        <%= f.text_field :email, class: "form-control", id: "exampleInputContent1" %>
     </div>
     <div class="form-group">
-        <label for="exampleInputAge1">年齢：</label>
-        <%= f.text_field :age, class: "form-control", id: "exampleInputAge1" %>
+        <label for="exampleInputProfile1">プロフィール：</label>
+        <%= f.text_field :profile, class: "form-control", id: "exampleInputProfile1" %>
     </div>
+    <div class="form-group">
+        <label for="exampleInputAddress1">住所：</label>
+        <%= f.text_field :address, class: "form-control", id: "exampleInputAddress1" %>
+    </div>
+    
     <div class="form-group">
         <%= f.submit class: "btn btn-sm btn-primary" %>
     </div>
+    
 <% end %>
