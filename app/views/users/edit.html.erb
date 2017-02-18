@@ -1,0 +1,20 @@
+<h1>アカウント情報</h1>
+
+<%= form_for(@user) do |f| %>
+    
+    <div class="form-group">
+        <label for="exampleInputName1">名前：</label>
+        <%= f.text_field  :name, class: "form-control", id: "exampleInputName1" %>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputContent1">内容：</label>
+        <%= f.text_area :email, class: "form-control", id: "exampleInputContent1" %>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputAge1">年齢：</label>
+        <%= f.text_field :age, class: "form-control", id: "exampleInputAge1" %>
+    </div>
+    <div class="form-group">
+        <%= f.submit class: "btn btn-sm btn-primary" %>
+    </div>
+<% end %>
