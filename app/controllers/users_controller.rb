@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :isuser, only: [:edit]
   before_action :set_message, only: [:edit, :update]
   
   def show
@@ -39,5 +40,12 @@ class UsersController < ApplicationController
   
   def set_message
     @user = User.find(params[:id])
+  end
+  
+  def isuser
+    @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to root_path, notice: "ログイン情報が一致しません"
+    end
   end
 end
