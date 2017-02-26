@@ -4,7 +4,8 @@
         <% else %>
           <ol class="follow">
               <% @following.each do |fw| %>
-                  <li id="following-<%= fw.id %>">
+                  <li id="following-<%= fw.id %>" class="col-md-12">
+                      <%= link_to gravatar_for(current_user, size: 50), fw %>
                       <span class="name"><%= fw.name %></span>
                   </li>
               <% end %>
