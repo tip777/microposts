@@ -31,6 +31,18 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+  
+  def following
+    @user = User.find(params[:id])
+    @following = @user.following_users
+    @relationship = @user.following_relationships.count
+  end
+  
+  def follower
+    @user = User.find(params[:id])
+    @follower = @user.follower_users
+    @relationship = @user.follower_relationships.count
+  end
 
   private
 
@@ -49,4 +61,6 @@ class UsersController < ApplicationController
       redirect_to root_path, notice: "ログイン情報が一致しません"
     end
   end
+  
+  
 end

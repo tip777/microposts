@@ -1,0 +1,13 @@
+<div>
+        <h3>フォロー (<%= @relationship %>)</h3>
+        <% if @relationship.nil? %>
+        <% else %>
+          <ol class="follow">
+              <% @following.each do |fw| %>
+                  <li id="following-<%= fw.id %>">
+                      <span class="name"><%= fw.name %></span>
+                  </li>
+              <% end %>
+          </ol>
+        <% end %>
+</div>
