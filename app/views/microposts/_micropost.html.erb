@@ -7,7 +7,7 @@
             <%= link_to "delete", micropost, method: :delete, data: {confirm: "You sure?"} %>
         <% end %>
     </span>
-    <div id="favorite_change">
+    <div id="favorite_change-<%= micropost.id %>">
         <% if current_user.favorite?(micropost) %>
             <%= render "microposts/unfavorite",favpost: micropost %>
         <% else %>
