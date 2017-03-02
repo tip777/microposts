@@ -1,0 +1,9 @@
+<div class="favoriting">
+        <h3>お気に入り</h3>
+        <% if @favorites.nil? %>
+        <% else %>
+          <ol class="favorite">
+              <%= render @microposts %>
+          </ol>
+        <% end %>
+</div>

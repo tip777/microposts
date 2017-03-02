@@ -2,7 +2,9 @@ class User < ActiveRecord::Base
     before_save {self.email = self.email.downcase}
     validates :name, presence: true, length: {maximum: 50}
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-    validates :email, presence: true, length: {maximum: 255},format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sesitive: false}
+    validates :email, presence: true, length: { maximum: 255 },
+                      format: { with: VALID_EMAIL_REGEX },
+                      uniqueness: { case_sensitive: false }
     has_secure_password
     has_many :microposts
     has_many :following_relationships, class_name: "Relationship",
@@ -30,8 +32,26 @@ class User < ActiveRecord::Base
         following_users.include?(other_user)
     end
     
-    def feed_items
-        Micropost.where(user_id: following_user_ids + [self.id]) 
+  def feed_items
+    Micropost.where(user_id: following_user_ids + [self.id])
+  end
+  
+    has_many :favorites, dependent: :destroy
+    has_many :favorite_microposts, through: :favorites, source: :micropost
+    
+    #お気に入り登録
+    def favorite(micropost)
+      favorites.find_or_create_by(micropost_id: micropost.id)
+    end
+    
+    #お気に入り削除
+    def unfavorite(micropost)
+      favorite = favorites.find_by(micropost_id: micropost.id)
+      favorite.destroy if favorite
+    end
+    
+    def favorite?(micropost)
+      favorite_microposts.include?(micropost)
     end
     
 end
